@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script>
+
+	(function(){
+		var Slipe = {
+			startX: 0,
+			moveX: 0,
+			endX: 0,
+			distance: 0,
+
+			touch: function(container){
+				container = container || document;
+
+				container.addEventListener('touchstart',Slipe.touchStart,false);
+				container.addEventListener('touchmove',Slipe.touchMove,false);
+				container.addEventListener('touchend',Slipe.touchEnd,false);
+			},
+
+			touchStart:function(event){
+			 	var touch = event.touches[0];
+				Slipe.startX = parseInt(touch.pageX);
+			},
+
+			touchMove:function(event){
+				var touch = event.touches[0];
+	            Slipe.moveX = parseInt(touch.pageX);
+	            Slipe.endX = Slipe.moveX;
+			},
+
+			touchEnd:function(){
+				Slipe.distance = Slipe.endX - Slipe.startX;
+	        	console.log(Slipe.distance);
+
+	        	return Slipe.distance;
+			}
+
+		};
+
+		Slipe.touch();
+	})();
+		    
+	</script>
+</body>
+</html>
